@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Liste des livres</h1>
+<a href="/books/add" class="btn btn-primary">Ajouter un livre</a>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Année</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in book %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.year }}</td>
+            <td>
+                <a href="/books/edit/{{ books.id }}" class="btn btn-warning btn-sm">Delete</a>
+                <a href="/books/delete/{{ books.id }}" class="btn btn-danger btn-sm">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Emprunts</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label for="book_id" class="form-label">Livre</label>
+        <select name="book_id" class="form-select">
+            {% for book in books %}
+            <option value="{{ book.id }}">{{ book.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="borrower_name" class="form-label">Nom de l'emprunteur</label>
+        <input type="text" name="borrower_name" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer l'emprunt</button>
+</form>
+
+<h2 class="mt-4">Liste des emprunts</h2>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Livre</th>
+            <th>Emprunteur</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for borrow in borrows %}
+        <tr>
+            <td>{{ borrow.book.title }}</td>
+            <td>{{ borrow.borrower_name }}</td>
+            <td>
+                <a href="/borrow/return/{{ borrow.id }}" class="btn btn-success btn-sm">Retourner</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
